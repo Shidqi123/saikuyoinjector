@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Headtrick iOS</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: #5a1f1a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(200, 50, 30, 0.6);
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: none;
+      background: #3a0f0a;
+      color: white;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #a02d20, #5a1f1a);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #c23b2a, #7a2b23);
+    }
+    .error {
+      color: #ff8888;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login Headtrick</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="license" placeholder="License Key">
+    <button onclick="login()">Login</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <script>
+    async function login() {
+      const username = document.getElementById("username").value.trim();
+      const license = document.getElementById("license").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (!username || !license) {
+        errorMsg.textContent = "Harap isi semua kolom!";
+        return;
+      }
+
+      try {
+        const res = await fetch("https://keyauth.win/api/reseller/?app=288ba642558e502bdbfd0609328a28c8a859063d399b5677e5b1ec4517dc2718"
+          + "&username=" + encodeURIComponent(username)
+          + "&key=" + encodeURIComponent(license));
+        const data = await res.json();
+
+        if (data.success) {
+          window.location.href = "https://apps.apple.com/app/id1300146617"; // Free Fire App Store
+        } else {
+          errorMsg.textContent = data.message || "Login gagal!";
+        }
+      } catch (err) {
+        errorMsg.textContent = "Tidak dapat terhubung ke server.";
+      }
+    }
+  </script>
+</body>
+</html>

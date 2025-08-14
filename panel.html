@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Headtrick iOS - Saikutoo</title>
+  <style>
+    body {
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    .panel {
+      background: #5a1f1a; /* merah kecoklatan */
+      border-radius: 16px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(200, 50, 30, 0.6);
+    }
+    h3 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .tab {
+      flex: 1;
+      margin: 2px;
+      padding: 6px;
+      background: #7a2b23; /* merah kecoklatan */
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .tab.active {
+      background: #c23b2a; /* merah terang */
+      box-shadow: 0 0 6px #c23b2a;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      margin: 6px 0;
+    }
+    .option label {
+      margin-left: 8px;
+    }
+    input[type=range] {
+      width: 100%;
+      margin: 8px 0;
+    }
+    .fov-label {
+      text-align: right;
+      font-size: 12px;
+      color: #ccc;
+    }
+    select {
+      width: 100%;
+      padding: 6px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 12px;
+      background: #3a0f0a; /* merah kecoklatan gelap */
+      color: white;
+      font-weight: bold;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #a02d20, #5a1f1a);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #c23b2a, #7a2b23);
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h3>HEADTRICK iOS SAIKUTOO</h3>
+    <div class="tabs">
+      <div class="tab active">fitur headtrick</div>
+      <div class="tab">@saikuyoo_</div>
+    </div>
+    <div class="option">
+      <input type="checkbox" id="aimbot" />
+      <label for="aimbot">aimbot</label>
+    </div>
+    <div class="option">
+      <input type="checkbox" id="aimlock" />
+      <label for="aimlock">aimlock</label>
+    </div>
+    <input type="range" id="fovRange" min="1" max="10" value="5" />
+    <div class="fov-label" id="fovValue">Fov 5</div>
+    <select>
+      <option>aimbot 50%</option>
+      <option>aimbot 70%</option>
+      <option>aimbot 90%</option>
+    </select>
+    <button id="injectBtn">START HEADTRICK</button>
+  </div>
+
+  <script>
+    const range = document.getElementById("fovRange");
+    const fovValue = document.getElementById("fovValue");
+    range.addEventListener("input", () => {
+      fovValue.textContent = "Fov " + range.value;
+    });
+
+    document.getElementById("injectBtn").addEventListener("click", () => {
+      // Try to open Free Fire via deep link
+      window.location.href = "freefire://";
+      // Fallback to Play Store after short delay
+      setTimeout(() => {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
